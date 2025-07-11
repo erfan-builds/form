@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پرسشنامه آموزشی هوش مصنوعی | صنعتی شریف</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a0e1a;
+            --secondary: #1a2238;
+            --accent: #ff6b6b;
+            --accent2: #4ecdc4;
+            --accent3: #ffd166;
+            --accent4: #6a0572;
+            --text: #f0f6ff;
+            --text-secondary: #c1d3f0;
+            --card: rgba(30, 35, 60, 0.9);
+            --glass: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: var(--glass);
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, var(--accent2), var(--accent));
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent2), var(--accent3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--accent2);
+            font-size: 1.3rem;
+            margin-top: 1rem;
+        }
+
+        .requirements {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .requirement {
+            background: rgba(78, 205, 196, 0.15);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .questionnaire {
+            background: var(--glass);
+            border-radius: 25px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .section {
+            margin-bottom: 3.5rem;
+            background: rgba(30, 35, 60, 0.7);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(78, 205, 196, 0.2);
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.8rem;
+            color: var(--accent2);
+            padding-bottom: 0.7rem;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            font-size: 1.5rem;
+        }
+
+        .question-group {
+            margin-bottom: 2.2rem;
+        }
+
+        .question-group label {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--accent3);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 1.2rem;
+            margin-top: 0.5rem;
+            background: rgba(20, 25, 45, 0.8);
+            border: 2px solid rgba(78, 205, 196, 0.3);
+            border-radius: 15px;
+            color: var(--text);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent2);
+            box-shadow: 0 0 15px rgba(78, 205, 196, 0.5);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(78, 205, 196, 0.1);
+            padding: 1rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .checkbox-item:hover {
+            background: rgba(78, 205, 196, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .checkbox-item input {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        button {
+            background: linear-gradient(45deg, var(--accent2), var(--accent3));
+            color: var(--primary);
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent3), var(--accent2));
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.6);
+        }
+
+        button:hover::before {
+            opacity: 1;
+        }
+
+        .response-message {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .success {
+            background: rgba(78, 205, 196, 0.2);
+            border: 2px solid var(--accent2);
+        }
+
+        .error {
+            background: rgba(255, 107, 107, 0.2);
+            border: 2px solid var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 2rem;
+        }
+
+        .footer-logo {
+            color: var(--accent2);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .sharif-badge {
+            background: linear-gradient(45deg, #b71c1c, #d32f2f);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1rem;
+            font-weight: 700;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .questionnaire {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .requirements {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-graduation-cap fa-3x" style="color: #4ecdc4;"></i>
+                <h1>پرسشنامه برنامه آموزشی هوش مصنوعی</h1>
+            </div>
+            <p class="subtitle">طراحی شده توسط متخصصی صنعتی شریف</p>
+            
+            <div class="sharif-badge">
+                <i class="fas fa-university"></i> دانشکده مهندسی کامپیوتر - دانشگاه صنعتی شریف
+            </div>
+        </header>
+        
+        <form id="aiQuestionnaire" class="questionnaire">
+            <!-- اطلاعات تماس -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-user"></i> اطلاعات تماس
+                </h2>
+                
+                <div class="contact-info">
+                    <div class="input-group">
+                        <label>نام و نام خانوادگی</label>
+                        <input type="text" id="fullName" placeholder="نام کامل خود را وارد کنید" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>شماره تلفن</label>
+                        <input type="tel" id="phoneNumber" placeholder="09xxxxxxxxx" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>آدرس ایمیل</label>
+                        <input type="email" id="email" placeholder="example@domain.com" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: Technical Background -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-laptop-code"></i> پیشینه فنی
+                </h2>
+                
+                <div class="question-group">
+                    <label>1. سابقه برنامه‌نویسی</label>
+                    <div class="input-group">
+                        <label>زبان‌های برنامه‌نویسی مسلط:</label>
+                        <input type="text" id="programmingLanguages" placeholder="Python, Java, C++, ..." required>
+                    </div>
+                    <div class="input-group">
+                        <label>سطح مهارت:</label>
+                        <select id="programmingLevel" required>
+                            <option value="">انتخاب کنید</option>
+                            <option value="beginner">مبتدی</option>
+                            <option value="intermediate">متوسط</option>
+                            <option value="advanced">پیشرفته</option>
+                            <option value="expert">حرفه‌ای</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>2. تجربه قبلی با هوش مصنوعی</label>
+                    <div class="input-group">
+                        <label>ابزارها و فریمورک‌های مورد استفاده:</label>
+                        <input type="text" id="aiTools" placeholder="TensorFlow, PyTorch, Keras, ...">
+                    </div>
+                    <div class="input-group">
+                        <label>پروژه‌های انجام شده:</label>
+                        <textarea id="aiProjects" placeholder="پروژه‌های مرتبط با هوش مصنوعی که انجام داده‌اید..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>3. آشنایی با مفاهیم پایه</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ml" value="machine_learning">
+                            <label for="ml">یادگیری ماشین</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="dl" value="deep_learning">
+                            <label for="dl">یادگیری عمیق</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="nlp" value="nlp">
+                            <label for="nlp">پردازش زبان طبیعی (NLP)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cv" value="computer_vision">
+                            <label for="cv">بینایی کامپیوتر</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="rl" value="reinforcement_learning">
+                            <label for="rl">یادگیری تقویتی</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2: Learning Goals -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-bullseye"></i> اهداف یادگیری
+                </h2>
+                
+                <div class="question-group">
+                    <label>1. اهداف اصلی از آموزش</label>
+                    <div class="input-group">
+                        <textarea id="learningGoals" placeholder="3 هدف اصلی خود از شرکت در این دوره آموزشی را بیان کنید..." required></textarea>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>2. حوزه‌های تخصصی مورد علاقه</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="vision" value="computer_vision">
+                            <label for="vision">بینایی کامپیوتر</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="llm" value="language_models">
+                            <label for="llm">مدل‌های زبانی بزرگ (LLM)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="robotics" value="robotics">
+                            <label for="robotics">هوش مصنوعی در رباتیک</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="health" value="healthcare">
+                            <label for="health">هوش مصنوعی در سلامت</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="finance" value="finance">
+                            <label for="finance">هوش مصنوعی در امور مالی</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="generative" value="generative_ai">
+                            <label for="generative">هوش مصنوعی تولید محتوا</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>3. سطح تسلط مورد انتظار پس از دوره</label>
+                    <div class="input-group">
+                        <select id="proficiencyLevel" required>
+                            <option value="">انتخاب کنید</option>
+                            <option value="basic">درک مفاهیم پایه</option>
+                            <option value="implement">توانایی پیاده‌سازی پروژه‌های ساده</option>
+                            <option value="advanced">توانایی پیاده‌سازی پروژه‌های پیشرفته</option>
+                            <option value="expert">تسلط کامل و توانایی توسعه مدل‌های جدید</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: Learning Preferences -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-user-graduate"></i> ترجیحات آموزشی
+                </h2>
+                
+                <div class="question-group">
+                    <label>1. شیوه یادگیری ترجیحی</label>
+                    <div class="input-group">
+                        <select id="learningStyle" required>
+                            <option value="">انتخاب کنید</option>
+                            <option value="practical">عملی و پروژه‌محور</option>
+                            <option value="theoretical">تئوری و مفهومی</option>
+                            <option value="balanced">ترکیب تئوری و عملی</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>2. ابزارهای مورد علاقه</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="python" value="python" checked>
+                            <label for="python">پایتون</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="tensorflow" value="tensorflow">
+                            <label for="tensorflow">TensorFlow</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pytorch" value="pytorch">
+                            <label for="pytorch">PyTorch</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="keras" value="keras">
+                            <label for="keras">Keras</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="scikit" value="scikit-learn">
+                            <label for="scikit">Scikit-learn</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="opencv" value="opencv">
+                            <label for="opencv">OpenCV</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>3. پروژه‌های عملی مورد نظر</label>
+                    <div class="input-group">
+                        <textarea id="projectIdeas" placeholder="پروژه‌های عملی که مایلید در طول دوره انجام دهید..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 4: Technical Infrastructure -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-server"></i> زیرساخت فنی
+                </h2>
+                
+                <div class="question-group">
+                    <label>1. سخت‌افزار در دسترس</label>
+                    <div class="input-group">
+                        <label>پردازنده گرافیکی (GPU):</label>
+                        <input type="text" id="gpu" placeholder="مدل GPU (مانند NVIDIA RTX 3080)">
+                    </div>
+                    <div class="input-group">
+                        <label>حافظه رم (RAM):</label>
+                        <input type="text" id="ram" placeholder="مقدار RAM به گیگابایت">
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>2. سیستم‌عامل مورد استفاده</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="windows" value="windows">
+                            <label for="windows">Windows</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="linux" value="linux">
+                            <label for="linux">Linux</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="macos" value="macos">
+                            <label for="macos">macOS</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>3. محدودیت‌های اجرایی</label>
+                    <div class="input-group">
+                        <textarea id="limitations" placeholder="محدودیت‌های سخت‌افزاری، زمانی یا دیگر محدودیت‌ها..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i> ارسال اطلاعات
+                </button>
+                <button type="reset">
+                    <i class="fas fa-redo"></i> بازنشانی فرم
+                </button>
+            </div>
+            
+            <div id="responseMessage" class="response-message"></div>
+        </form>
+        
+        <footer>
+            <div class="footer-logo">
+                <i class="fas fa-brain"></i> برنامه آموزشی هوش مصنوعی
+            </div>
+            <p>طراحی شده توسط متخصص صنعتی شریف | دانشکده مهندسی کامپیوتر</p>
+            <p>تمامی حقوق محفوظ است © 2023</p>
+        </footer>
+    </div>
+
+    <script>
+        // Webhook URL (fixed)
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1393336825812094987/FPY_Y-WA0s9ObWj1fA-zAJe9U0duDduyxhc9NhqewyKoaKRhBj-ueLuSwyTpdJVZEQuU";
+        
+        document.getElementById('aiQuestionnaire').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validate phone number
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            if (!phoneNumber.match(/^09\d{9}$/)) {
+                showMessage("لطفاً شماره تلفن معتبر وارد کنید (مثال: 09123456789)", "error");
+                return;
+            }
+            
+            // Validate email
+            const email = document.getElementById('email').value;
+            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                showMessage("لطفاً ایمیل معتبر وارد کنید", "error");
+                return;
+            }
+            
+            // Get form values
+            const formData = {
+                contact_info: {
+                    full_name: document.getElementById('fullName').value,
+                    phone: phoneNumber,
+                    email: email
+                },
+                technical_background: {
+                    programming_languages: document.getElementById('programmingLanguages').value.split(',').map(lang => lang.trim()),
+                    programming_level: document.getElementById('programmingLevel').value,
+                    ai_tools: document.getElementById('aiTools').value.split(',').map(tool => tool.trim()),
+                    ai_projects: document.getElementById('aiProjects').value,
+                    basic_concepts: Array.from(document.querySelectorAll('#technical input[type="checkbox"]:checked'))
+                        .map(checkbox => checkbox.value)
+                },
+                learning_goals: {
+                    main_goals: document.getElementById('learningGoals').value.split('\n').filter(goal => goal.trim()),
+                    interest_areas: Array.from(document.querySelectorAll('#learning-goals input[type="checkbox"]:checked'))
+                        .map(checkbox => checkbox.value),
+                    proficiency_level: document.getElementById('proficiencyLevel').value
+                },
+                preferences: {
+                    learning_style: document.getElementById('learningStyle').value,
+                    preferred_tools: Array.from(document.querySelectorAll('#preferences input[type="checkbox"]:checked'))
+                        .map(checkbox => checkbox.value),
+                    project_ideas: document.getElementById('projectIdeas').value
+                },
+                infrastructure: {
+                    gpu: document.getElementById('gpu').value,
+                    ram: document.getElementById('ram').value,
+                    operating_systems: Array.from(document.querySelectorAll('#infrastructure input[type="checkbox"]:checked'))
+                        .map(checkbox => checkbox.value),
+                    limitations: document.getElementById('limitations').value
+                }
+            };
+            
+            // Create final JSON structure
+            const now = new Date();
+            const timestamp = now.toISOString().slice(0, 19).replace('T', ' ');
+            
+            const payload = {
+                educational_plan: formData,
+                metadata: {
+                    session_duration: "45 دقیقه",
+                    timestamp: timestamp
+                }
+            };
+            
+            try {
+                // Send to Discord webhook
+                const response = await fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        content: "📊 **دریافت پاسخ جدید از پرسشنامه آموزشی هوش مصنوعی**",
+                        embeds: [{
+                            title: "جزئیات برنامه آموزشی",
+                            description: "```json\n" + JSON.stringify(payload, null, 2) + "\n```",
+                            color: 0x4ECDC4,
+                            timestamp: new Date().toISOString(),
+                            footer: {
+                                text: "ارسال شده از طریق پورتال صنعتی شریف"
+                            }
+                        }]
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('خطا در ارسال اطلاعات به دیسکورد');
+                }
+                
+                // Show success message
+                showMessage("✅ اطلاعات با موفقیت به وب‌هوک دیسکورد ارسال شد!", "success");
+                
+                // Reset form after successful submission
+                setTimeout(() => {
+                    document.getElementById('aiQuestionnaire').reset();
+                }, 3000);
+                
+            } catch (error) {
+                // Show error message
+                showMessage("❌ خطا: " + error.message, "error");
+            }
+        });
+        
+        function showMessage(message, type) {
+            const responseMessage = document.getElementById('responseMessage');
+            responseMessage.textContent = message;
+            responseMessage.className = "response-message " + type;
+            responseMessage.style.display = "block";
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                responseMessage.style.display = "none";
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
